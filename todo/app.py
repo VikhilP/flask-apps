@@ -32,7 +32,7 @@ def addtodos(tasks):
     new_todo = Todo(task=tasks)
     db.session.add(new_todo)
     db.session.commit()
-    return redirect(url_for("todos"))
+    return redirect(url_for("readtodos"))
 
 
 if __name__ == "__main__":
