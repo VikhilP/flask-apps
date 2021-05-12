@@ -1,4 +1,4 @@
-from application import db
+from applications import db
 
 class GameSeries(db.Model):
     series_id = db.Column(db.Integer, primary_key=True)

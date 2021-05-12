@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block body %}
+{% for game in all_gameseries %}
+<p>{{game.series_name}} {{game.review}}</p>
+{% endfor %}
+
+{% endblock body %}
