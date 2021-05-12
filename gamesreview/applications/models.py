@@ -1,4 +1,12 @@
 from applications import db
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+
+
+class SeriesForm(FlaskForm):
+    series_name = StringField('Series Name')
+    review = StringField('Review e.g."2/10"')
+    submit = SubmitField('add series')
 
 class GameSeries(db.Model):
     series_id = db.Column(db.Integer, primary_key=True)

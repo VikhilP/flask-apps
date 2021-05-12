@@ -1,6 +1,6 @@
 from applications import app, db
-from applications.models import Game, GameSeries
-from flask import render_template
+from applications.models import Game, GameSeries, SeriesForm
+from flask import render_template, request, redirect, url_for
 
 @app.route('/add/<game>')
 def add(game):
@@ -36,3 +36,21 @@ def update(name):
 def rshtml():
     return render_template("gameseries.html", all_gameseries = GameSeries.query.all() )
 
+@app.route('/', methods= ["GET","POST"])
+def gameseriessubmit():
+    error = ""
+    form = SeriesForm()
+
+    if request.method == "POST":
+        series_name = form.series_name.data
+        review = form.review.data
+
+        if len(series_name) == 0:
+            error = "Please enter the series name"
+        else:
+            new_series = GameSeries(series_name = form.series_name.data, review = form.review.data)
+            db.session.add(new_series)
+            db.session.commit()
+            return redirect(url_for("readseries"))
+    
+    return render_template('home.html', form=form, message=error)
