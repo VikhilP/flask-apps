@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Todos</title>
+    </head>
+    <body>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.task.label }} {{ form.task}}
+                <br>
+                {{ form.submit }}
+            {{ message }}
+            </form>
+        </div>
+    </body>
+</html>

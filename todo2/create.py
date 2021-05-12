@@ -1,4 +1,4 @@
-from appfolder import db, models
+from appfolder import db
 
 db.drop_all()
 db.create_all()

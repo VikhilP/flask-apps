@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% for todo in all_todos %}
+
+    {% if todo.done == True %}
+        <p> {{ todo.task }} &#9989 </p>
+    {% else %}
+        <p>{{ todo.task }} &#10060</p>
+    {% endif%}
+
+{% endfor %}
+
+{% endblock body %}
