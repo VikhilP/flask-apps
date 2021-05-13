@@ -1,15 +1,58 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<div class="indexform">
+    <table>
+        {{ form.hidden_tag() }}
+        <tr>
+            <th>Id</th>
+            <th>Task</th>
+            <th>Done?</th>
+            <th>Delete</th>
+            <th>Complete</th>
+            <th>Update</th>
+        </tr>
+        {% for todo in all_todos %}
 
-{% for todo in all_todos %}
+        {% if todo.done == True %}
+            <tr>
+            <th>{{ todo.id }}</th>
+            <th>{{ todo.task }}</th>
+            <th>&#9989 </th>
+            <th><form method="POST" action="./delete">
+                    <input type="hidden" value="{{todo.id}}" name="id">
+                    <input type="submit" name = "action" value="delete">
+                </form></th>
+            <th><form method="POST" action="./incomplete">
+                    <input type="hidden" value="{{todo.id}}" name="id">
+                    <input type="submit" name = "action" value="incomplete">
+                </form></th>
+            <th><form method="POST" action="./update">
+                    <input type="hidden" value="{{todo.id}}" name="id">
+                    <input type="submit" name = "action" value="update">
+                </form></th>
+            </tr>
+        {% else %}
+            <tr>
+                <th>{{ todo.id }}</th>
+                <th>{{ todo.task }}</th>
+                <th>&#10060 </th>
+                <th><form method="POST" action="./delete">
+                        <input type="hidden" value="{{todo.id}}" name="id">
+                        <input type="submit" name = "action" value="delete">
+                    </form></th>
+                <th><form method="POST" action="./complete">
+                        <input type="hidden" value="{{todo.id}}" name="id">
+                        <input type="submit" name = "action" value="complete">
+                    </form></th>
+                <th><form method="POST" action="./update">
+                        <input type="hidden" value="{{todo.id}}" name="id">
+                        <input type="submit" name = "action" value="update">
+                    </form></th>
+            </tr>
+        {% endif%}
 
-    {% if todo.done == True %}
-        <p> {{ todo.task }} &#9989 </p>
-    {% else %}
-        <p>{{ todo.task }} &#10060</p>
-    {% endif%}
-
-{% endfor %}
-
+        {% endfor %}
+    </table>
+</div>
 {% endblock body %}

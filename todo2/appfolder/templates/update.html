@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class='form'>
+        <form method='POST' action=''><input type="hidden" value="{{todo.id}}" name="id">
+            {{ form.hidden_tag() }}
+            {{ form.task.label }} {{ form.task}}
+            <br>
+            {{ form.submit }}
+        {{ message }}
+        </form>
+    </div>
+{% endblock body %}
