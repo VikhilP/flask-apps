@@ -64,7 +64,7 @@ def update():
     temp = request.form.get("id")
     temptask = Todos.query.filter_by(id=temp).first()
     form = TodoForm()
-
+    # form.task.data = temptask.task
 
     if request.method == "POST":
         _task = form.task.data
@@ -75,6 +75,8 @@ def update():
             temptask.task = _task
             db.session.commit()
             return redirect(url_for("index"))
+    elif request.method == "GET":
+        form.task.data = temptask.task
         
     return render_template('update.html', form=form, message = error, todo = temptask)
 
